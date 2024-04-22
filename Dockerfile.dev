@@ -1,0 +1,21 @@
+FROM node:18
+
+ARG NODE_ENV=development
+
+ENV NODE_ENV $NODE_ENV
+ENV PORT 8080
+ENV NEXT_TELEMETRY_DISABLED 1
+
+EXPOSE $PORT
+
+RUN mkdir -p /opt/app
+WORKDIR /opt/app
+
+COPY package.json package-lock.json /opt/app/
+
+RUN npm ci
+RUN npm install -g nodemon
+
+COPY . .
+
+CMD [ "nodemon", "src/server/index.mjs", "--watch", "src/*", "--ext", "*" ]
