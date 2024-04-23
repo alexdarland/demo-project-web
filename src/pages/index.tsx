@@ -4,7 +4,7 @@ import { useLazyQuery } from "@apollo/client";
 import styled from "styled-components";
 import { ProgressBar } from "@/components/ProgressBar";
 import { Question } from "@/components/Question";
-import { questions } from "@/data/questions.json";
+import { questions } from "@/data/questions";
 import { GET_SUGGESTIONS } from "@/utils/queries";
 import { Results } from "@/components/Results";
 
@@ -68,7 +68,7 @@ export default function Home() {
 
   useEffect(() => {
     if (answers.length === questions.length) {
-      getSugestions({ variables: { statements: answers } });
+      getSugestions({ variables: { statements: answers.filter(Boolean) } });
     }
   }, [answers]);
 
