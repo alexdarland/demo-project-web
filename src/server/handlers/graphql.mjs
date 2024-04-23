@@ -6,19 +6,8 @@ const graphqlProxy = httpProxy.createProxyServer({
 });
 
 export const graphqlHandler = async (req, res) => {
-  graphqlProxy.web(
-    req,
-    res,
-    {
-      headers: {
-        ...(process.env.GRAPHQL_REQUEST_HOST && {
-          host: process.env.GRAPHQL_REQUEST_HOST,
-        }),
-      },
-    },
-    (error) => {
-      res.status(500);
-      res.send(error.toString());
-    }
-  );
+  graphqlProxy.web(req, res, (error) => {
+    res.status(500);
+    res.send(error.toString());
+  });
 };
