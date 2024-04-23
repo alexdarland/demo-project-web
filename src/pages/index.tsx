@@ -1,92 +1,12 @@
-import { ProgressBar } from "@/components/ProgressBar";
-import { Question } from "@/components/Question";
 import Head from "next/head";
 import { useEffect, useState } from "react";
+import { useLazyQuery } from "@apollo/client";
 import styled from "styled-components";
-
-const questions = [
-  {
-    text: "Which statement fits you?",
-    options: [
-      { label: "Arrange the invitation lists", value: "" },
-      { label: "Design the cards", value: "" },
-      { label: "Design the cards", value: "" },
-    ],
-  },
-  {
-    text: "Do you want to work by yourself or with others?",
-    options: [
-      { label: "By myself", value: "likes to work alone" },
-      { label: "With others", value: "likes to work with others" },
-      {
-        label: "Both",
-        value: "likes to work both with others and alone",
-      },
-    ],
-  },
-  {
-    text: "Are you a physically active person?",
-    options: [
-      {
-        label: "I workout regularly",
-        value: "likes to be physically active",
-      },
-      { label: "Sometimes", value: "doesn't mind physical work" },
-      {
-        label: "I aim to move as little as possible",
-        value: "doesn't want a physical job",
-      },
-    ],
-  },
-  {
-    text: "How important is sallary?",
-    options: [
-      {
-        label: "Very important! I want to buy a house, car and boat!",
-        value: "wants a high sallary",
-      },
-      { label: "It makes life easier", value: "wants a decent salary" },
-      {
-        label: "Money is not important and is not what makes me happy!",
-        value: "wouldn't mind a low income",
-      },
-    ],
-  },
-  {
-    text: "How do you solve a problem?",
-    options: [
-      {
-        label: "I ask someone I trust for advice!",
-        value: "wants input from others when making decitions",
-      },
-      {
-        label: "I search for facts and information online and in books",
-        value: "Proactivly seeks out information by themselves",
-      },
-      {
-        label: "I like to figure it our by myself",
-        value: "is problem solving orientated",
-      },
-    ],
-  },
-  {
-    text: "Do you like to take risks?",
-    options: [
-      {
-        label: "I never back down from a challange",
-        value: "enjoy taking risks",
-      },
-      {
-        label: "Sometimes you have to take risks to win",
-        value: "is willing to take risks",
-      },
-      {
-        label: "I seldomly take unessasary risks.",
-        value: "does not like taking risks",
-      },
-    ],
-  },
-];
+import { ProgressBar } from "@/components/ProgressBar";
+import { Question } from "@/components/Question";
+import { questions } from "@/data/questions.json";
+import { GET_SUGGESTIONS } from "@/utils/queries";
+import { Results } from "@/components/Results";
 
 const Main = styled.main`
   width: 100%;
@@ -139,6 +59,8 @@ const CollectAnswers = ({ answers, addAnswer }: CollectAnswersProps) => {
 
 export default function Home() {
   const [answers, setAnswers] = useState<string[]>([]);
+  const [getSugestions, { loading, error, data }] =
+    useLazyQuery(GET_SUGGESTIONS);
 
   const addAnswer = (answer: string) => {
     setAnswers([...answers, answer]);
@@ -146,7 +68,7 @@ export default function Home() {
 
   useEffect(() => {
     if (answers.length === questions.length) {
-      console.log("submit answers", answers);
+      getSugestions({ variables: { statements: answers } });
     }
   }, [answers]);
 
@@ -166,6 +88,9 @@ export default function Home() {
         {answers.length !== questions.length && (
           <CollectAnswers answers={answers} addAnswer={addAnswer} />
         )}
+        {loading && <p>LOADING</p>}
+        {error && <p>Oops, something went wrong. Please try again later.</p>}
+        {data && <Results proffessions={data.Suggestions?.proffessions} />}
       </Main>
     </>
   );

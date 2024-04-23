@@ -1,5 +1,7 @@
 import type { AppProps } from "next/app";
 import { createGlobalStyle } from "styled-components";
+import { ApolloProvider } from "@apollo/client";
+import createApolloClient from "../utils/apolloClient";
 
 const GlobalStyles = createGlobalStyle`
     :root {
@@ -54,10 +56,12 @@ const GlobalStyles = createGlobalStyle`
   `;
 
 export default function App({ Component, pageProps }: AppProps) {
+  const client = createApolloClient();
+
   return (
-    <>
+    <ApolloProvider client={client}>
       <GlobalStyles />
       <Component {...pageProps} />
-    </>
+    </ApolloProvider>
   );
 }

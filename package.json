@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.9.11",
     "cookie-parser": "^1.4.6",
     "express": "^4.19.2",
     "http-proxy": "^1.18.1",
