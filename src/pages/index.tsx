@@ -2,12 +2,11 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import { useLazyQuery } from "@apollo/client";
 import styled from "styled-components";
-import { ProgressBar } from "@/components/ProgressBar";
-import { Question } from "@/components/Question";
 import { questions } from "@/data/questions";
 import { GET_SUGGESTIONS } from "@/utils/queries";
 import { Results } from "@/components/Results";
 import { Loader } from "@/components/Loader";
+import { CollectAnswers } from "@/components/CollectAnswer";
 
 const Main = styled.main`
   width: 100%;
@@ -30,34 +29,6 @@ const SubHeadline = styled.p`
   margin: 0.5em 0;
 `;
 
-const ProgressStatus = styled.p`
-  font-size: 20px;
-  margin: 1em 0;
-`;
-
-interface CollectAnswersProps {
-  answers: string[];
-  addAnswer: Function;
-}
-
-const CollectAnswers = ({ answers, addAnswer }: CollectAnswersProps) => {
-  return (
-    <>
-      <ProgressStatus>
-        Fråga {answers.length + 1}/{questions.length}
-      </ProgressStatus>
-      <ProgressBar length={questions.length} current={answers.length} />
-      {answers.length < questions.length && (
-        <Question
-          text={questions[answers.length].text}
-          options={questions[answers.length].options}
-          addAnswer={addAnswer}
-        />
-      )}
-    </>
-  );
-};
-
 export default function Home() {
   const [answers, setAnswers] = useState<string[]>([]);
   const [getSugestions, { loading, error, data }] =
@@ -79,10 +50,6 @@ export default function Home() {
         <title>Demo Project 2024</title>
         <meta name="description" content="Showcasing Fullstack competenses" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <style>
-          @import
-          url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
-        </style>
       </Head>
       <Main>
         <Headline>Upptäck ditt framtida yrke!</Headline>
