@@ -7,6 +7,7 @@ import { Question } from "@/components/Question";
 import { questions } from "@/data/questions";
 import { GET_SUGGESTIONS } from "@/utils/queries";
 import { Results } from "@/components/Results";
+import { Loader } from "@/components/Loader";
 
 const Main = styled.main`
   width: 100%;
@@ -88,7 +89,12 @@ export default function Home() {
         {answers.length !== questions.length && (
           <CollectAnswers answers={answers} addAnswer={addAnswer} />
         )}
-        {loading && <p>LOADING</p>}
+        {loading && (
+          <>
+            <p>LADDAR DIN FRAMTID!</p>
+            <Loader />
+          </>
+        )}
         {error && <p>Oops, something went wrong. Please try again later.</p>}
         {data && <Results proffessions={data.Suggestions?.proffessions} />}
       </Main>
