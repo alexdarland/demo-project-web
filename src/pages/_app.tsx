@@ -2,7 +2,9 @@ import type { AppProps } from "next/app";
 import { createGlobalStyle } from "styled-components";
 import { ApolloProvider } from "@apollo/client";
 import createApolloClient from "../utils/apolloClient";
+import { Inter } from "next/font/google";
 
+const inter = Inter({ subsets: ["latin"] });
 const GlobalStyles = createGlobalStyle`
     :root {
       --color-primary: #367b92;
@@ -10,22 +12,6 @@ const GlobalStyles = createGlobalStyle`
       --color-mid-grey: #c7c7c7;
       --color-light-blue: #e7f2f7;
     }
-/* 
-    @font-face {
-      font-family: InterVariable;
-      font-style: normal;
-      font-weight: 100 900;
-      font-display: swap;
-      src: url("/fonts/Inter/InterVariable.woff2") format("woff2");
-    }
-
-    @font-face {
-      font-family: InterVariable;
-      font-style: italic;
-      font-weight: 100 900;
-      font-display: swap;
-      src: url("/fonts/Inter/InterVariable-Italic.woff2") format("woff2");
-    } */
 
     html,
     body {
@@ -35,7 +21,7 @@ const GlobalStyles = createGlobalStyle`
       display: flex;
       align-items: center;
       justify-content: center;
-      font-family: "InterVariable";
+      font-family: ${inter.style.fontFamily};
     }
 
     #__next {
