@@ -23,9 +23,9 @@ export const Results = ({ proffessions }: ResultsProps) => {
     <>
       <h2>Här är några yrken som passar din personlighetstyp!</h2>
       <ResultList>
-        {proffessions.map((p) => (
-          <ResultItem>
-            <Pill>{p}</Pill>
+        {proffessions.map((proffession, index) => (
+          <ResultItem key={index}>
+            <Pill>{proffession}</Pill>
           </ResultItem>
         ))}
       </ResultList>
