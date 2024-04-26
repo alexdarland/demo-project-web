@@ -44,7 +44,7 @@ const CollectAnswers = ({ answers, addAnswer }: CollectAnswersProps) => {
   return (
     <>
       <ProgressStatus>
-        Question {answers.length + 1}/{questions.length}
+        Fråga {answers.length + 1}/{questions.length}
       </ProgressStatus>
       <ProgressBar length={questions.length} current={answers.length} />
       {answers.length < questions.length && (
@@ -79,12 +79,16 @@ export default function Home() {
         <title>Demo Project 2024</title>
         <meta name="description" content="Showcasing Fullstack competenses" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style>
+          @import
+          url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        </style>
       </Head>
       <Main>
-        <Headline>Discover your future proffession!</Headline>
+        <Headline>Upptäck ditt framtida yrke!</Headline>
         <SubHeadline>
-          Answer a few of our questions, and we can tell you what type of work
-          would suit your personality!
+          Svara på några frågor om din personlighet så kan vi berätta vilket
+          yrke som hade passat dig!
         </SubHeadline>
         {answers.length !== questions.length && (
           <CollectAnswers answers={answers} addAnswer={addAnswer} />
@@ -95,7 +99,7 @@ export default function Home() {
             <Loader />
           </>
         )}
-        {error && <p>Oops, something went wrong. Please try again later.</p>}
+        {error && <p>Oj, något gick fel. Vänligen prova igen senare.</p>}
         {data && <Results proffessions={data.Suggestions?.proffessions} />}
       </Main>
     </>

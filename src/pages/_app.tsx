@@ -10,7 +10,7 @@ const GlobalStyles = createGlobalStyle`
       --color-mid-grey: #c7c7c7;
       --color-light-blue: #e7f2f7;
     }
-
+/* 
     @font-face {
       font-family: InterVariable;
       font-style: normal;
@@ -25,7 +25,7 @@ const GlobalStyles = createGlobalStyle`
       font-weight: 100 900;
       font-display: swap;
       src: url("/fonts/Inter/InterVariable-Italic.woff2") format("woff2");
-    }
+    } */
 
     html,
     body {

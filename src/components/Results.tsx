@@ -21,7 +21,7 @@ const Pill = styled.span`
 export const Results = ({ proffessions }: ResultsProps) => {
   return (
     <>
-      <h2>Here are some suggestions based on your answers!</h2>
+      <h2>Här är några yrken som passar din personlighetstyp!</h2>
       <ResultList>
         {proffessions.map((p) => (
           <ResultItem>

@@ -1,110 +1,123 @@
 export const questions = [
   {
-    text: "What statement is most true?",
+    text: "Vilket påstående stämmer bäst för dig?",
     options: [
       {
-        label: "I want to be creative at work",
-        value: "wants a creative work",
+        label: "Jag är en kreativ person",
+        value: "vill ha ett kreativt yrke",
       },
       {
-        label: "I want to help people",
-        value: "wants to help people",
+        label: "Jag vill hjälpa människor",
+        value: "vill jobba med att hjälpa andra",
       },
       {
-        label: "I want to work with problem solving",
-        value: "wants to work with problem solving",
+        label: "Jag gillar teknik",
+        value: "gillar teknik",
       },
       {
-        label: "I want to work with research",
-        value: "wants to work with research",
+        label: "Jag är en estetisk person",
+        value: "vill ha ett estetisk yrke",
       },
       {
-        label: "I want to work with business",
-        value: "wants to work in business",
+        label: "Jag gillar naturvetenskapliga ämnen",
+        value: "gillar naturvetenskap",
+      },
+      {
+        label: "Jag är intresserad av affärslivet",
+        value: "vill jobba med affärslivet",
       },
     ],
   },
   {
-    text: "Do you want to work indoors?",
+    text: "Var vill du jobba?",
     options: [
       {
-        label: "Yes, being exposed to the elements is not my thing!",
-        value: "wants to work indoors",
+        label: "På kontor",
+        value: "vill jobba på kontor",
       },
-      { label: "I don't mind.", value: "" },
       {
-        label: "Can't imagine beeing indoors all day",
-        value: "doesn't want to work in an office",
+        label: "Resa runt",
+        value: "vill resa i arbetet",
+      },
+      {
+        label: "Utomhus",
+        value: "vill jobba utomhus",
       },
     ],
   },
   {
-    text: "Do you want to work by yourself or with others?",
+    text: "Hur mycket interaktion med andra människor vill du ha?",
     options: [
-      { label: "By myself", value: "likes to work alone" },
-      { label: "With others", value: "likes to work with others" },
-      { label: "Both", value: "" },
+      { label: "Vill helst jobba själv", value: "gillar att jobba ensam" },
+      {
+        label: "Jag vill jobba med andra",
+        value: "vill jobba med andra människor",
+      },
+      { label: "Lite av båda", value: "" },
     ],
   },
   {
-    text: "Do you want a physical work?",
+    text: "Vill du ha ett fysiskt arbete?",
     options: [
       {
-        label: "Workout at work! Letz goo!",
-        value: "wants a physically active job",
+        label: "Ja",
+        value: "vill ha ett fysiskt ansträngande jobb",
       },
-      { label: "I don't mind", value: "" },
+      { label: "Nej", value: "vill inte ha ett fysiskt ansträngande jobb" },
       {
-        label: "I aim to move as little as possible",
-        value: "doesn't want a physical job",
-      },
-    ],
-  },
-  {
-    text: "How important is sallary?",
-    options: [
-      {
-        label: "Very important! I want to buy a house, car and boat!",
-        value: "wants a high sallary",
-      },
-      { label: "It makes life easier", value: "wants a decent salary" },
-      {
-        label: "Money is not important and is not what makes me happy!",
-        value: "thinks income is not important",
+        label: "Spela ingen roll",
+        value: "",
       },
     ],
   },
   {
-    text: "How do you solve a problem?",
+    text: "Hur viktig är din lön?",
     options: [
       {
-        label: "I ask someone I trust for advice!",
-        value: "wants input from others when making decitions",
+        label: "Väldigt viktig! Jag vill ha hus, bil och båt!",
+        value: "vill ha en hög lön",
       },
       {
-        label: "I search for facts and information online and in books",
-        value: "is a good researcher",
+        label: "Det underlättar att ha en bra lön",
+        value: "vill åtminstone ha en hyfsad lön",
       },
       {
-        label: "I like to figure it our by myself",
-        value: "likes solving problems",
+        label: "Pengar är inte viktigt!",
+        value: "är ok med en låg lön",
       },
     ],
   },
   {
-    text: "Do you like to take risks?",
+    text: "Hur löser du problem?",
     options: [
       {
-        label: "I never back down from a challange",
-        value: "enjoy taking risks",
+        label: "Jag frågar någon jag litar på om råd!",
+        value: "vill blanda in fler i beslutstagande",
       },
       {
-        label: "Sometimes you have to take risks to win",
-        value: "can sometimes take risks",
+        label: "Jag söker själv efter fakta online eller i böcker",
+        value: "söker aktivt själv efter information",
       },
       {
-        label: "I seldomly take unessasary risks.",
-        value: "does not like taking risks",
+        label: "Jag vill lösa det själv",
+        value: "gillar problemlösning",
+      },
+    ],
+  },
+  {
+    text: "Tar du risker?",
+    options: [
+      {
+        label: "Jag tackar aldrig nej till en utmaning",
+        value: "gillar att ta risker",
+      },
+      {
+        label: "Ibland måste man satsa för att vinna",
+        value: "är villig att ta måttlig risk",
+      },
+      {
+        label: "Jag tar sällan onödig risk.",
+        value: "gillar inte att ta risk",
       },
     ],
   },
