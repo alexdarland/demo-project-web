@@ -1,12 +1,10 @@
 import Head from "next/head";
-import { useEffect, useState } from "react";
 import { useLazyQuery } from "@apollo/client";
 import styled from "styled-components";
-import { questions } from "@/data/questions";
-import { GET_SUGGESTIONS_BY_STATEMENTS } from "@/utils/queries";
+import { GET_SUGGESTIONS_BY_PERSONALITY_SCORES } from "@/utils/queries";
 import { Results } from "@/components/Results";
 import { Loader } from "@/components/Loader";
-import { CollectAnswers } from "@/components/CollectAnswer";
+import { PersonalitySlider } from "@/components/PersonalitySlider";
 
 const Main = styled.main`
   width: 100%;
@@ -29,23 +27,22 @@ const SubHeadline = styled.p`
   margin: 0.5em 0;
 `;
 
+interface HandleSubmitPayload {
+  practical: number;
+  caring: number;
+  analytical: number;
+  driven: number;
+  artistic: number;
+  organized: number;
+}
+
 export default function Home() {
-  const [answers, setAnswers] = useState<string[]>([]);
-  const [getSugestionsByStatements, { loading, error, data }] = useLazyQuery(
-    GET_SUGGESTIONS_BY_STATEMENTS
-  );
+  const [getSugestionsByPersonalityScores, { loading, error, data }] =
+    useLazyQuery(GET_SUGGESTIONS_BY_PERSONALITY_SCORES);
 
-  const addAnswer = (answer: string) => {
-    setAnswers([...answers, answer]);
+  const handleSubmit = (payload: HandleSubmitPayload) => {
+    getSugestionsByPersonalityScores({ variables: payload });
   };
-
-  useEffect(() => {
-    if (answers.length === questions.length) {
-      getSugestionsByStatements({
-        variables: { statements: answers.filter(Boolean) },
-      });
-    }
-  }, [answers]);
 
   return (
     <>
@@ -60,9 +57,7 @@ export default function Home() {
           Svara på några frågor om din personlighet så kan vi berätta vilket
           yrke som hade passat dig!
         </SubHeadline>
-        {answers.length !== questions.length && (
-          <CollectAnswers answers={answers} addAnswer={addAnswer} />
-        )}
+        {<PersonalitySlider submit={handleSubmit} />}
         {loading && (
           <>
             <p>LADDAR DIN FRAMTID!</p>
@@ -71,7 +66,9 @@ export default function Home() {
         )}
         {error && <p>Oj, något gick fel. Vänligen prova igen senare.</p>}
         {data && (
-          <Results proffessions={data.SuggestionsByStatements?.proffessions} />
+          <Results
+            proffessions={data.SuggestionsByPersonalityScores?.proffessions}
+          />
         )}
       </Main>
     </>
