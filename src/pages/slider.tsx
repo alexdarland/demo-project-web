@@ -5,6 +5,7 @@ import { GET_SUGGESTIONS_BY_PERSONALITY_SCORES } from "@/utils/queries";
 import { Results } from "@/components/Results";
 import { Loader } from "@/components/Loader";
 import { PersonalitySlider } from "@/components/PersonalitySlider";
+import { NavBar } from "@/components/NavBar";
 
 const Main = styled.main`
   width: 100%;
@@ -52,6 +53,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Main>
+        <NavBar />
         <Headline>Upptäck ditt framtida yrke!</Headline>
         <SubHeadline>
           Svara på några frågor om din personlighet så kan vi berätta vilket
