@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { PrimaryButton } from "./Button";
 
 const Headline = styled.p`
   font-size: 20px;
@@ -102,7 +103,7 @@ export const PersonalitySlider = ({ submit }: PersonalitySlider) => {
         <Slider label="Konstnärlig" apply={setArtistic} value={artistic} />
         <Slider label="Ordningsam" apply={setOrganized} value={organized} />
       </MainWrapper>
-      <button
+      <PrimaryButton
         onClick={() => {
           submit({
             practical,
@@ -115,7 +116,7 @@ export const PersonalitySlider = ({ submit }: PersonalitySlider) => {
         }}
       >
         Klar
-      </button>
+      </PrimaryButton>
     </>
   );
 };

@@ -59,7 +59,7 @@ export default function Home() {
           Svara på några frågor om din personlighet så kan vi berätta vilket
           yrke som hade passat dig!
         </SubHeadline>
-        {<PersonalitySlider submit={handleSubmit} />}
+        {!loading && !data && <PersonalitySlider submit={handleSubmit} />}
         {loading && (
           <>
             <p>LADDAR DIN FRAMTID!</p>
